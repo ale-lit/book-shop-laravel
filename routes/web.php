@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+Route::group(['namespace' => 'Author', 'prefix' => ''], function () {
+    Route::resource('authors', 'AuthorController')->names('authors');
+});
+
+require __DIR__.'/auth.php';
