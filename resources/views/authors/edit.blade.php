@@ -1,9 +1,9 @@
 @component('layouts.guest')
 
-<form method="POST" action="{{ empty($data->attributes) ? route('authors.store') : route('authors.update', $data->author_id) }}">
+<form method="POST" action="{{ empty($data->author_id) ? route('authors.store') : route('authors.update', $data->author_id) }}">
     @csrf
 
-    @if (!empty($data->attributes))
+    @if (!empty($data->author_id))
         @method('PATCH')
     @endif
 
@@ -32,7 +32,7 @@
     <div class="flex items-center justify-end mt-4">
 
         <x-button class="ml-3">
-            {{ empty($data->attributes) ? __('Добавить') : __('Изменить') }}
+            {{ empty($data->author_id) ? __('Добавить') : __('Изменить') }}
         </x-button>
     </div>
 </form>
