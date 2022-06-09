@@ -1,9 +1,9 @@
 @component('layouts.guest')
 
-<form method="POST" action="{{ empty($data->attributes) ? route('books.store') : route('books.update', $data->book_id) }}">
+<form method="POST" action="{{ empty($data->book_id) ? route('books.store') : route('books.update', $data->book_id) }}">
     @csrf
 
-    @if (!empty($data->attributes))
+    @if (!empty($data->book_id))
         @method('PATCH')
     @endif
 
@@ -38,11 +38,11 @@
 
     <!-- Book_authors -->
     <div>
-        <x-label for="book_authors" :value="__('Цена')" />
+        <x-label for="book_authors" :value="__('Авторы')" />
 
         <select name="authors[]" multiple id="book_authors">
             @foreach ($authors as $author)
-                <option value="{{ $author->author_id }}">{{ $author->author_fio }}</option>
+                <option value="{{ $author->author_id }}" {{ $data->authors->contains($author) ? 'selected' : '' }}>{{ $author->author_fio }}</option>
             @endforeach
         </select>
     </div>
@@ -50,7 +50,7 @@
     <div class="flex items-center justify-end mt-4">
 
         <x-button class="ml-3">
-            {{ empty($data->attributes) ? __('Добавить') : __('Изменить') }}
+            {{ empty($data->book_id) ? __('Добавить') : __('Изменить') }}
         </x-button>
     </div>
 </form>

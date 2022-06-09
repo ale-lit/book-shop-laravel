@@ -79,8 +79,38 @@ class BookController extends BaseController
      */
     public function edit($id)
     {
-        $data = Book::findOrFail($id);
+        $data = Book::with(['authors'])
+                    ->findOrFail($id);
         $authors = Author::all();
         return view('books.edit', compact('data', 'authors'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // $rules = [
+        //     'author_fio' => 'required|min:5|max:255'
+        // ];
+        // $validatedData = $this->validate($request, $rules);
+        $data = $request->all();
+        $item = Book::with(['authors'])
+                    ->findOrFail($id);
+        $item->timestamps = false;
+        $result = $item->fill($data)->save();
+        $item->authors()->sync($data['authors']);
+        if($result) {
+            return redirect()
+                        ->route('books.index');
+        } else {
+            return back()
+                        ->withErrors(['msg' => 'Ошибка сохранения'])
+                        ->withInput();
+        }
     }
 }
