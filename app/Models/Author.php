@@ -15,4 +15,9 @@ class Author extends Model
         'author_fio',
         'author_is_deleted'
     ];
+
+    public function books()
+    {
+        return $this->belongsToMany(Book::class, 'books_authors', 'book_author_author_id', 'book_author_book_id');
+    }
 }

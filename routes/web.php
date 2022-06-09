@@ -25,4 +25,8 @@ Route::group(['namespace' => 'Author', 'prefix' => ''], function () {
     Route::resource('authors', 'AuthorController')->names('authors');
 });
 
+Route::group(['namespace' => 'Book', 'prefix' => ''], function () {
+    Route::resource('books', 'BookController')->names('books');
+});
+
 require __DIR__.'/auth.php';
