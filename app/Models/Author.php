@@ -10,4 +10,9 @@ class Author extends Model
     use HasFactory;
 
     protected $primaryKey = 'author_id';
+
+    protected $fillable = [
+        'author_fio',
+        'author_is_deleted'
+    ];
 }

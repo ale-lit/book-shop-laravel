@@ -25,7 +25,8 @@ class AuthorController extends BaseController
      */
     public function create()
     {
-        //
+        $data = new Author();
+        return view('authors.edit', compact('data'));
     }
 
     /**
@@ -36,7 +37,23 @@ class AuthorController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        $rules = [
+            'author_fio' => 'required|min:5|max:255'
+        ];
+        $validatedData = $this->validate($request, $rules);
+        $data = $request->all();
+        $item = new Author();
+        $item->author_is_deleted = 0;
+        $item->timestamps = false;
+        $result = $item->fill($data)->save();
+        if($result) {
+            return redirect()
+                        ->route('authors.index');
+        } else {
+            return back()
+                        ->withErrors(['msg' => 'Ошибка сохранения'])
+                        ->withInput();
+        }
     }
 
     /**
@@ -58,7 +75,8 @@ class AuthorController extends BaseController
      */
     public function edit($id)
     {
-        //
+        $data = Author::findOrFail($id);
+        return view('authors.edit', compact('data'));
     }
 
     /**
@@ -70,7 +88,30 @@ class AuthorController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'author_fio' => 'required|min:5|max:255'
+        ];
+        $validatedData = $this->validate($request, $rules);
+
+        $item = Author::find($id);
+        $item->timestamps = false;
+        if (empty($item)) {
+            return back()
+                        ->withErrors(['msg' => "Запись с id = $id не найдена"])
+                        ->withInput();
+        }
+        $item->author_is_deleted = 0;
+        $item->timestamps = false;
+        $data = $request->all();
+        $result = $item->fill($data)->save();
+        if($result) {
+            return redirect()
+                        ->route('authors.index');
+        } else {
+            return back()
+                        ->withErrors(['msg' => 'Ошибка сохранения'])
+                        ->withInput();
+        }
     }
 
     /**
