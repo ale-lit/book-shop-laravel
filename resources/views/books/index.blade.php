@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="row">
-                <a href="{{ route('authors.create') }}" class="btn btn-primary">
+                <a href="{{ route('books.create') }}" class="btn btn-primary">
                     Добавить
                 </a>
             </div>
