@@ -41,11 +41,11 @@ class AuthorController extends BaseController
             'author_fio' => 'required|min:5|max:255'
         ];
         $validatedData = $this->validate($request, $rules);
-        $data = $request->all();
+        $validatedData = $request->all();
         $item = new Author();
         $item->author_is_deleted = 0;
         $item->timestamps = false;
-        $result = $item->fill($data)->save();
+        $result = $item->fill($validatedData)->save();
         if($result) {
             return redirect()
                         ->route('authors.index');
@@ -102,8 +102,8 @@ class AuthorController extends BaseController
         }
         $item->author_is_deleted = 0;
         $item->timestamps = false;
-        $data = $request->all();
-        $result = $item->fill($data)->save();
+        $validatedData = $request->all();
+        $result = $item->fill($validatedData)->save();
         if($result) {
             return redirect()
                         ->route('authors.index');
