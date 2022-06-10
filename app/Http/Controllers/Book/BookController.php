@@ -54,6 +54,7 @@ class BookController extends BaseController
         //     'book_name' => 'required|min:5|max:255'
         // ];
         // $validatedData = $this->validate($request, $rules);
+
         $data = $request->all();
         $item = new Book();
         $item->book_is_deleted = 0;
