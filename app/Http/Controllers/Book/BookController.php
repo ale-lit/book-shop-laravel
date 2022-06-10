@@ -51,7 +51,7 @@ class BookController extends BaseController
     public function store(Request $request)
     {
         // $rules = [
-        //     'author_fio' => 'required|min:5|max:255'
+        //     'book_name' => 'required|min:5|max:255'
         // ];
         // $validatedData = $this->validate($request, $rules);
         $data = $request->all();
