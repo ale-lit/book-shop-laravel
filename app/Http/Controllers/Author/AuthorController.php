@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Author;
 
 use Illuminate\Http\Request;
 use App\Models\Author;
+use App\Jobs\AfterCreateAuthorJob;
 
 class AuthorController extends BaseController
 {
@@ -47,6 +48,9 @@ class AuthorController extends BaseController
         $item->timestamps = false;
         $result = $item->fill($validatedData)->save();
         if($result) {
+            $job = new AfterCreateAuthorJob($item);
+            $this->dispatch($job);
+
             return redirect()
                         ->route('authors.index');
         } else {
