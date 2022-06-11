@@ -39,6 +39,7 @@
     }
     .table td {
         padding: 2px 5px;
+        text-align: left;
     }
     .table th:last-child {
         text-align: right;

@@ -16,15 +16,26 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
+
         <style>
-            body {
+            .root {
                 font-family: 'Nunito', sans-serif;
                 background: #f7fafc;
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
             }
 
             .main {
                 max-width: 1100px;
-                margin: 200px auto 100px;
+                text-align: center;
+                margin: auto;
+                width: 100%;
+            }
+
+            .logo {
+                width: 160px;
+                display: inline-block;
             }
 
             .content {
@@ -41,6 +52,7 @@
             .main-content-block {
                 border-right: 1px solid #e7e7e7;
                 padding: 10px;
+                text-align: center;
             }
             .main-content-block:last-of-type {
                 border-right: none;
@@ -51,10 +63,11 @@
                 gap: 10px;
                 align-items: center;
                 font-size: 18px;
+                justify-content: center;
             }
         </style>
     </head>
-    <body>
+    <body class="root">
         <header class="header">
             @if (Route::has('login'))
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">

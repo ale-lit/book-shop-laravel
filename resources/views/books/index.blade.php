@@ -39,6 +39,7 @@
     }
     .table td {
         padding: 2px 5px;
+        text-align: left;
     }
     .table th:last-child {
         text-align: right;
@@ -99,7 +100,7 @@
                                     {{ $item->publisher ? $item->publisher->publisher_name : "" }}
                                 </td>
                                 <td>
-                                    {{ $item->book_price }}
+                                    {{ $item->book_price }}₽
                                 </td>
                                 <td class="actions-buttons">
                                     <a href="{{ route('books.edit', $item->book_id) }}" class="butt edit-button" title="Редактировать">
