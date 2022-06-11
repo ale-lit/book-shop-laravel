@@ -5081,6 +5081,21 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_0__["default"].start();
+var baseUrl = '/laravel/book_shop/public/api';
+
+window.remove = function (name, id) {
+  if (confirm('Вы действительно хотите удалить эту запись?')) {
+    var request = new XMLHttpRequest();
+    request.open('DELETE', "".concat(baseUrl, "/").concat(name, "/").concat(id));
+    request.send();
+
+    request.onreadystatechange = function (response) {
+      if (request.readyState === 4 && request.status === 200) {
+        window.location.reload();
+      }
+    };
+  }
+};
 
 /***/ }),
 

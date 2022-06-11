@@ -126,6 +126,14 @@ class AuthorController extends BaseController
      */
     public function destroy($id)
     {
-        //
+        $data = array(
+            'author_is_deleted' => 1
+        );
+        $item = Author::findOrFail($id);
+        $item->timestamps = false;
+        $result = $item->fill($data)->save();
+        if ($result) {
+            return 'ok';
+        }
     }
 }

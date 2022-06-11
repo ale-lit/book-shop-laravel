@@ -30,7 +30,9 @@
                                     <a href="{{ route('authors.edit', $item->author_id) }}" class="btn btn-success">
                                         Редактировать
                                     </a>
-
+                                    <button class="btn btn-danger" onclick="remove('authors', {{ $item->author_id }})">
+                                        Удалить
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach
