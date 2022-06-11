@@ -39,7 +39,6 @@
     <!-- Book_authors -->
     <div>
         <x-label for="book_authors" :value="__('Авторы')" />
-
         <select name="authors[]" multiple id="book_authors">
             @foreach ($authors as $author)
                 <option value="{{ $author->author_id }}" {{ $data->authors->contains($author) ? 'selected' : '' }}>{{ $author->author_fio }}</option>
@@ -48,7 +47,6 @@
     </div>
 
     <div class="flex items-center justify-end mt-4">
-
         <x-button class="ml-3">
             {{ empty($data->book_id) ? __('Добавить') : __('Изменить') }}
         </x-button>

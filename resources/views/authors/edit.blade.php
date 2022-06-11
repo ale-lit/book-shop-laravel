@@ -25,12 +25,10 @@
     <!-- Author_name -->
     <div>
         <x-label for="name" :value="__('ФИО')" />
-
         <x-input id="name" class="block mt-1 w-full" type="text" name="author_fio" :value="old('author_fio') ?? $data->author_fio" required autofocus />
     </div>
 
     <div class="flex items-center justify-end mt-4">
-
         <x-button class="ml-3">
             {{ empty($data->author_id) ? __('Добавить') : __('Изменить') }}
         </x-button>
