@@ -39,6 +39,19 @@
                     </tbody>
                 </table>
             </div>
+            <div class="row">
+                @if ($items->total() > $items->count())
+                    <div class="row justify-content-center">
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    {{ $items->links() }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
         </div>
     </div>
 </div>
