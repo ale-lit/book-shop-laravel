@@ -1,15 +1,52 @@
 @component('layouts.guest')
 
+<style>
+    .content__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: bold;
+    }
+
+    .add-button {
+        background: black;
+        cursor: pointer;
+        color: #fff;
+        padding: 5px 10px;
+        border-radius: 5px;
+        font-weight: normal;
+        transition: all .3s ease-in-out;
+    }
+    .add-button:hover {
+        opacity: .7;
+    }
+
+    .table {
+        width: 100%;
+        margin: 25px 0;
+    }
+    .table th {
+        text-align: left;
+    }
+    .table th:last-child {
+        text-align: right;
+    }
+    .table td:last-child {
+        text-align: right;
+    }
+</style>
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <div class="row">
-                <a href="{{ route('authors.create') }}" class="btn btn-primary">
+            <div class="content__header">
+                Все авторы
+                <a href="{{ route('authors.create') }}" class="add-button">
                     Добавить
                 </a>
             </div>
             <div class="row">
-                <table>
+                <table class="table">
                     <thead>
                         <tr>
                             <th> ID </th>
