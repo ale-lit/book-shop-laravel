@@ -5,19 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Publisher extends Model
+class Genre extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'publisher_id';
+    protected $primaryKey = 'genre_id';
 
     protected $fillable = [
-        'publisher_name',
-        'publisher_is_deleted'
+        'genre_name'
     ];
 
     public function books()
     {
-        return $this->hasOne(Book::class, 'book_publisher_id', 'publisher_id');
+        return $this->hasOne(Book::class, 'book_genre_id', 'genre_id');
     }
 }

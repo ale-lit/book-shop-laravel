@@ -25,7 +25,7 @@ class BookController extends BaseController
         ];
         $items = Book::where('book_is_deleted', 0)
                     ->select($columns)
-                    ->with(['publisher', 'authors'])
+                    ->with(['publisher', 'authors', 'genre'])
                     ->get();
 
         return view('books.index', compact('items'));

@@ -50,6 +50,7 @@
                 border-right: 1px solid #e7e7e7;
                 padding: 10px;
                 text-align: center;
+                width: 50%;
             }
             .main-content-block:last-of-type {
                 border-right: none;

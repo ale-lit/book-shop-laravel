@@ -94,7 +94,7 @@
                                     {{ $item->book_year }}
                                 </td>
                                 <td>
-                                    {{ $item->book_genre_id }}
+                                    {{ $item->genre ? $item->genre->genre_name : "" }}
                                 </td>
                                 <td>
                                     {{ $item->publisher ? $item->publisher->publisher_name : "" }}
