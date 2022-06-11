@@ -15,7 +15,7 @@ class AuthorController extends BaseController
      */
     public function index()
     {
-        $items = Author::all();
+        $items = Author::where('author_is_deleted', 0)->paginate(5);
         return view('authors.index', compact('items'));
     }
 
