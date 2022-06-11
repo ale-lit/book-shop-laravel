@@ -24,7 +24,7 @@
 
             .main {
                 max-width: 1100px;
-                margin: 200px auto 0;
+                margin: 200px auto 100px;
             }
 
             .content {

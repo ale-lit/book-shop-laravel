@@ -22,7 +22,7 @@
 
             .main {
                 max-width: 1100px;
-                margin: 200px auto 0;
+                margin: 200px auto 100px;
             }
 
             .content {
@@ -39,6 +39,7 @@
             .main-content-block {
                 border-right: 1px solid #e7e7e7;
                 padding: 10px;
+                flex-basis: 50%;
             }
             .main-content-block:last-of-type {
                 border-right: none;
