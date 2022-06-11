@@ -50,7 +50,9 @@
                                     <a href="{{ route('books.edit', $item->book_id) }}" class="btn btn-success">
                                         Редактировать
                                     </a>
-
+                                    <button class="btn btn-danger" onclick="remove('books', {{ $item->book_id }})">
+                                        Удалить
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach

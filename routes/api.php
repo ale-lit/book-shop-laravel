@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Author\AuthorController;
+use App\Http\Controllers\Book\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,4 +23,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::delete('/authors/{id}', function ($id) {
     $authorController = new AuthorController();
     return $authorController->destroy($id);
+});
+
+Route::delete('/books/{id}', function ($id) {
+    $bookController = new BookController();
+    return $bookController->destroy($id);
 });

@@ -114,4 +114,23 @@ class BookController extends BaseController
                         ->withInput();
         }
     }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $data = array(
+            'book_is_deleted' => 1
+        );
+        $item = Book::findOrFail($id);
+        $item->timestamps = false;
+        $result = $item->fill($data)->save();
+        if ($result) {
+            return 'ok';
+        }
+    }
 }
