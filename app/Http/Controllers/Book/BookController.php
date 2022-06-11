@@ -23,7 +23,8 @@ class BookController extends BaseController
             'book_genre_id',
             'book_publisher_id'
         ];
-        $items = Book::select($columns)
+        $items = Book::where('book_is_deleted', 0)
+                    ->select($columns)
                     ->with(['publisher', 'authors'])
                     ->get();
 
