@@ -32,7 +32,6 @@
     <!-- Book_price -->
     <div>
         <x-label for="book_price" :value="__('Цена')" />
-
         <x-input id="book_price" class="block mt-1 w-full" type="text" name="book_price" :value="old('book_price') ?? $data->book_price" required />
     </div>
 
