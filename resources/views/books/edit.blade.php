@@ -1,6 +1,16 @@
 @component('layouts.guest')
 
-<form method="POST" action="{{ empty($data->book_id) ? route('books.store') : route('books.update', $data->book_id) }}">
+<style>
+    .edit-form {
+        text-align: left;
+        padding: 0 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+</style>
+
+<form method="POST" action="{{ empty($data->book_id) ? route('books.store') : route('books.update', $data->book_id) }}" class="edit-form">
     @csrf
 
     @if (!empty($data->book_id))
@@ -28,6 +38,23 @@
 
         <x-input id="book_name" class="block mt-1 w-full" type="text" name="book_name" :value="old('book_name') ?? $data->book_name" required autofocus />
     </div>
+
+    <!-- Book_year -->
+    <div>
+        <x-label for="book_year" :value="__('Год')" />
+        <x-input id="book_year" class="block mt-1 w-full" type="text" name="book_year" :value="old('book_year') ?? $data->book_year" required />
+    </div>
+
+    {{-- <!-- Book_publisher -->
+    <div>
+        <x-label for="book_publisher" :value="__('Издатель')" />
+
+        <select name="book_publisher" id="book_publisher">
+            @foreach ($publishers as $publisher)
+                <option value="{{ $publisher->publisher_id }}" {{ $data->publisher->publisher_name == $publisher->publisher_name ? 'selected' : '' }}>{{ $publisher->publisher_name }}</option>
+            @endforeach
+        </select>
+    </div> --}}
 
     <!-- Book_price -->
     <div>
