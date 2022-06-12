@@ -35,11 +35,14 @@
     }
     .table th {
         text-align: left;
-        padding: 0 5px;
+        padding: 0 10px;
     }
     .table td {
-        padding: 2px 5px;
+        padding: 2px 10px;
         text-align: left;
+    }
+    .table th:first-child {
+        text-align: center;
     }
     .table th:last-child {
         text-align: right;

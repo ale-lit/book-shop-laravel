@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Book;
 use Illuminate\Http\Request;
 use App\Models\Book;
 use App\Models\Author;
+use App\Models\Publisher;
 
 class BookController extends BaseController
 {
@@ -80,10 +81,11 @@ class BookController extends BaseController
      */
     public function edit($id)
     {
-        $data = Book::with(['authors'])
+        $data = Book::with(['authors', 'publisher'])
                     ->findOrFail($id);
         $authors = Author::all();
-        return view('books.edit', compact('data', 'authors'));
+        $publishers = Publisher::all();
+        return view('books.edit', compact('data', 'authors', 'publishers'));
     }
 
     /**
@@ -100,11 +102,12 @@ class BookController extends BaseController
         // ];
         // $validatedData = $this->validate($request, $rules);
         $data = $request->all();
-        $item = Book::with(['authors'])
+        $item = Book::with(['authors', 'publisher'])
                     ->findOrFail($id);
         $item->timestamps = false;
         $result = $item->fill($data)->save();
         $item->authors()->sync($data['authors']);
+        // $item->publisher()->sync($data['book_publisher']);
         if($result) {
             return redirect()
                         ->route('books.index');
