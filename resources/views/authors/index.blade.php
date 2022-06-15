@@ -35,10 +35,10 @@
     }
     .table th {
         text-align: left;
-        padding: 0 5px;
+        padding: 4px 6px;
     }
     .table td {
-        padding: 2px 5px;
+        padding: 4px 6px;
         text-align: left;
     }
     .table th:last-child {
@@ -46,6 +46,12 @@
     }
     .table td:last-child {
         text-align: right;
+    }
+    .table tr:nth-child(even) {
+        background: #f2f2f2;
+    }
+    .table tbody tr:hover {
+        background: #e4e4e4;
     }
 
     .actions-buttons {
