@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Author\AuthorController;
+use App\Http\Controllers\Book\BookController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,20 +17,25 @@ use App\Http\Controllers\Author\AuthorController;
 
 Route::get('/', function () {
     return view('index');
-})->name('main');
+})->name('main.index');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth'])->name('dashboard');
 
 
 // Route::group(['namespace' => 'Author', 'prefix' => ''], function () {
 //     Route::resource('authors', 'AuthorController')->names('authors');
 // });
-Route::resource('authors', AuthorController::class);
+Route::resource('authors', AuthorController::class, ['names' => [
+    'index' => 'authors.index'
+]]);
 
-Route::group(['namespace' => 'Book', 'prefix' => ''], function () {
-    Route::resource('books', 'BookController')->names('books');
-});
+// Route::group(['namespace' => 'Book', 'prefix' => ''], function () {
+//     Route::resource('books', 'BookController')->names('books');
+// });
+Route::resource('books', BookController::class, ['names' => [
+    'index' => 'books.index',
+]]);
 
 require __DIR__.'/auth.php';
