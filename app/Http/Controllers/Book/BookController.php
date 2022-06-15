@@ -83,7 +83,7 @@ class BookController extends BaseController
     {
         $data = Book::with(['authors', 'publisher'])
                     ->findOrFail($id);
-        $authors = Author::all();
+        $authors = Author::where('author_is_deleted', 0)->get();
         $publishers = Publisher::all();
         return view('books.edit', compact('data', 'authors', 'publishers'));
     }
