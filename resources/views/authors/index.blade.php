@@ -24,7 +24,7 @@
                             {{ $item->author_id }}
                         </td>
                         <td>
-                            {{ $item->author_fio }}
+                            <a href="{{ route('authors.show', $item->author_id) }}" class="underline">{{ $item->author_fio }}</a>
                         </td>
                         <td class="actions-buttons">
                             <a href="{{ route('authors.edit', $item->author_id) }}" class="butt edit-button"

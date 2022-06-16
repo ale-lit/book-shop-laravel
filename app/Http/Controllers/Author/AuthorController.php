@@ -5,11 +5,16 @@ namespace App\Http\Controllers\Author;
 use Illuminate\Http\Request;
 use App\Models\Author;
 use App\Jobs\AfterCreateAuthorJob;
+use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 
 class AuthorController extends BaseController
 {
     public function index()
     {
+
+        // dd(Auth::check());
+
         $items = Author::where('author_is_deleted', 0)->paginate(10);
         return view('authors.index', compact('items'));
     }
@@ -48,7 +53,8 @@ class AuthorController extends BaseController
 
     public function show($id)
     {
-        //
+        $data = Author::findOrFail($id);
+        return view('authors.show', compact('data'));
     }
 
     public function edit($id)
