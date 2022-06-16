@@ -36,17 +36,21 @@ class BookController extends BaseController
 
     public function store(Request $request)
     {
-        // $rules = [
-        //     'book_name' => 'required|min:5|max:255'
-        // ];
-        // $validatedData = $this->validate($request, $rules);
-        $data = $request->all();
+        $rules = [
+            'book_name' => ['required', 'string', 'min:3', 'max:255'],
+            'book_genre_id' => ['nullable', 'integer', 'digits_between:1,10'],
+            'book_price' => ['nullable', 'numeric', 'min:1', 'max:999999'],
+            'book_year' => ['nullable', 'integer', 'digits:4'],
+            'book_publisher_id' => ['nullable', 'integer', 'digits_between:1,10'],
+        ];
+        $validatedData = $this->validate($request, $rules);
+        $validatedData = $request->all();
         $item = new Book();
         $item->book_is_deleted = 0;
         $item->book_avg_mark = 0;
         $item->timestamps = false;
-        $result = $item->fill($data)->save();
-        $item->authors()->sync($data['authors']);
+        $result = $item->fill($validatedData)->save();
+        $item->authors()->sync($validatedData['authors']);
         if ($result) {
             alert(__('Добавлено!'));
 

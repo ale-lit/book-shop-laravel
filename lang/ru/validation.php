@@ -158,7 +158,13 @@ return [
     */
 
     'attributes' => [
+        'name' => 'ФИО',
+        'email' => 'Email',
+        'password' => 'Пароль',
         'author_fio' => 'ФИО',
+        'book_name' => 'Название книги',
+        'book_year' => 'Год',
+        'book_price' => 'Цена',
     ],
 
 ];

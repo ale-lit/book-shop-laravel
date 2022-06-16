@@ -41,6 +41,7 @@
                 @foreach ($genres as $genre)
                     <option
                         value="{{ $genre->genre_id }}"
+                        {{-- @if (!empty(old('book_genre_id'))) {{ old('book_genre_id') == $genre->genre_name ? 'selected' : '' }} @endif --}}
                         @if (!empty($data->genre->genre_name)) {{ $data->genre->genre_name == $genre->genre_name ? 'selected' : '' }} @endif
                     >
                         {{ $genre->genre_name }}

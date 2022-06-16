@@ -7,6 +7,7 @@ use App\Models\Author;
 use App\Jobs\AfterCreateAuthorJob;
 use App\Models\Book;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class AuthorController extends BaseController
 {
@@ -28,7 +29,7 @@ class AuthorController extends BaseController
     public function store(Request $request)
     {
         $rules = [
-            'author_fio' => ['required', 'string', 'min:5', 'max:255', 'unique:authors'],
+            'author_fio' => ['required', 'string', 'min:3', 'max:255', 'unique:authors'],
         ];
         $validatedData = $this->validate($request, $rules);
         $validatedData = $request->all();
@@ -36,18 +37,18 @@ class AuthorController extends BaseController
         $item->author_is_deleted = 0;
         $item->timestamps = false;
         $result = $item->fill($validatedData)->save();
-        if($result) {
+        if ($result) {
             alert(__('Добавлено!'));
 
             $job = new AfterCreateAuthorJob($item);
             $this->dispatch($job);
 
             return redirect()
-                        ->route('authors.index');
+                ->route('authors.index');
         } else {
             return back()
-                        ->withErrors(['msg' => 'Ошибка сохранения'])
-                        ->withInput();
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
         }
     }
 
@@ -66,7 +67,7 @@ class AuthorController extends BaseController
     public function update(Request $request, $id)
     {
         $rules = [
-            'author_fio' => 'required|min:5|max:255'
+            'author_fio' => ['required', 'string', 'min:3', 'max:255', Rule::unique('authors')->ignore($id, 'author_id')],
         ];
         $validatedData = $this->validate($request, $rules);
 
@@ -74,22 +75,22 @@ class AuthorController extends BaseController
         $item->timestamps = false;
         if (empty($item)) {
             return back()
-                        ->withErrors(['msg' => "Запись с id = $id не найдена"])
-                        ->withInput();
+                ->withErrors(['msg' => "Запись с id = $id не найдена"])
+                ->withInput();
         }
         $item->author_is_deleted = 0;
         $item->timestamps = false;
         $validatedData = $request->all();
         $result = $item->fill($validatedData)->save();
-        if($result) {
+        if ($result) {
             alert(__('Сохранено!'));
 
             return redirect()
-                        ->route('authors.index');
+                ->route('authors.index');
         } else {
             return back()
-                        ->withErrors(['msg' => 'Ошибка сохранения'])
-                        ->withInput();
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
         }
     }
 
