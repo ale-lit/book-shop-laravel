@@ -157,6 +157,8 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'author_fio' => 'ФИО',
+    ],
 
 ];

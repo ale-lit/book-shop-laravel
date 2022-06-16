@@ -23,7 +23,7 @@ class AuthorController extends BaseController
     public function store(Request $request)
     {
         $rules = [
-            'author_fio' => 'required|min:5|max:255'
+            'author_fio' => ['required', 'string', 'min:5', 'max:255', 'unique:authors'],
         ];
         $validatedData = $this->validate($request, $rules);
         $validatedData = $request->all();

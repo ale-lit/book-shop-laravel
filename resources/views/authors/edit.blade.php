@@ -10,21 +10,6 @@
             @method('PATCH')
         @endif
 
-        <div class="container">
-            @if ($errors->any())
-                <div class="row justify-content-center">
-                    <div class="col-md-11">
-                        <div class="alert alert-danger" role="alert">
-                            <button type="button" class="close" data-dismisss="alert" aria-label="close">
-                                <span aria-hidden="true"> x </span>
-                            </button>
-                            {{ $errors->first() }}
-                        </div>
-                    </div>
-                </div>
-            @endif
-        </div>
-
         <!-- Author_name -->
         <div>
             <x-label for="name" :value="__('ФИО')" />
