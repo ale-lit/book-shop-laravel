@@ -33,15 +33,12 @@
         <!-- Book_genre -->
         <div>
             <x-label for="book_genre" :value="__('Жанр')" />
-
-            {{-- {{ dd($data->publisher->publisher_name, $data->publisher_name) }} --}}
-
             <select name="book_genre_id" id="book_genre">
                 <option value=""></option>
                 @foreach ($genres as $genre)
                     <option
                         value="{{ $genre->genre_id }}"
-                        {{-- @if (!empty(old('book_genre_id'))) {{ old('book_genre_id') == $genre->genre_name ? 'selected' : '' }} @endif --}}
+                        @if (!empty(old('book_genre_id'))) {{ old('book_genre_id') == $genre->genre_id ? 'selected' : '' }} @endif
                         @if (!empty($data->genre->genre_name)) {{ $data->genre->genre_name == $genre->genre_name ? 'selected' : '' }} @endif
                     >
                         {{ $genre->genre_name }}
