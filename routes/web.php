@@ -28,7 +28,7 @@ Route::get('/', function () {
 //     Route::resource('authors', 'AuthorController')->names('authors');
 // });
 Route::resource('authors', AuthorController::class, ['names' => [
-    'index' => 'authors.index'
+    'index' => 'authors.index',
 ]]);
 
 // Route::group(['namespace' => 'Book', 'prefix' => ''], function () {

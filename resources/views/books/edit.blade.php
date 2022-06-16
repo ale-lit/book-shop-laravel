@@ -41,22 +41,48 @@
                 autofocus />
         </div>
 
+
+        <!-- Book_genre -->
+        <div>
+            <x-label for="book_genre" :value="__('Жанр')" />
+
+            {{-- {{ dd($data->publisher->publisher_name, $data->publisher_name) }} --}}
+
+            <select name="book_genre_id" id="book_genre">
+                <option value=""></option>
+                @foreach ($genres as $genre)
+                    <option
+                        value="{{ $genre->genre_id }}"
+                        @if (!empty($data->genre->genre_name)) {{ $data->genre->genre_name == $genre->genre_name ? 'selected' : '' }} @endif
+                    >
+                        {{ $genre->genre_name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+
         <!-- Book_year -->
         <div>
             <x-label for="book_year" :value="__('Год')" />
             <x-input id="book_year" class="block mt-1 w-full" type="text" name="book_year" :value="old('book_year') ?? $data->book_year" required />
         </div>
 
-        {{-- <!-- Book_publisher -->
-    <div>
-        <x-label for="book_publisher" :value="__('Издатель')" />
+        <!-- Book_publisher -->
+        <div>
+            <x-label for="book_publisher" :value="__('Издатель')" />
 
-        <select name="book_publisher" id="book_publisher">
-            @foreach ($publishers as $publisher)
-                <option value="{{ $publisher->publisher_id }}" {{ $data->publisher->publisher_name == $publisher->publisher_name ? 'selected' : '' }}>{{ $publisher->publisher_name }}</option>
-            @endforeach
-        </select>
-    </div> --}}
+            <select name="book_publisher_id" id="book_publisher">
+                <option value=""></option>
+                @foreach ($publishers as $publisher)
+                    <option
+                        value="{{ $publisher->publisher_id }}"
+                        @if (!empty($data->publisher->publisher_name)) {{ $data->publisher->publisher_name == $publisher->publisher_name ? 'selected' : '' }} @endif
+                    >
+                        {{ $publisher->publisher_name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
 
         <!-- Book_price -->
         <div>

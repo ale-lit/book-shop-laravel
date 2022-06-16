@@ -101,5 +101,10 @@
                 @endforeach
             </tbody>
         </table>
+
+
+        @if ($items->total() > $items->count())
+            {{ $items->links() }}
+        @endif
     </div>
 @endcomponent
