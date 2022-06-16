@@ -47,20 +47,22 @@ class BookController extends BaseController
         $item->timestamps = false;
         $result = $item->fill($data)->save();
         $item->authors()->sync($data['authors']);
-        if($result) {
+        if ($result) {
+            alert(__('Добавлено!'));
+
             return redirect()
-                        ->route('books.index');
+                ->route('books.index');
         } else {
             return back()
-                        ->withErrors(['msg' => 'Ошибка сохранения'])
-                        ->withInput();
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
         }
     }
 
     public function edit($id)
     {
         $data = Book::with(['authors', 'publisher'])
-                    ->findOrFail($id);
+            ->findOrFail($id);
         $authors = Author::where('author_is_deleted', 0)->get();
         $publishers = Publisher::all();
         $genres = Genre::all();
@@ -75,20 +77,22 @@ class BookController extends BaseController
         // $validatedData = $this->validate($request, $rules);
         $data = $request->all();
         $item = Book::with(['authors', 'publisher'])
-                    ->findOrFail($id);
+            ->findOrFail($id);
         $item->timestamps = false;
 
         $result = $item->fill($data)->save();
 
         $item->authors()->sync($data['authors']);
 
-        if($result) {
+        if ($result) {
+            alert(__('Сохранено!'));
+
             return redirect()
-                        ->route('books.index');
+                ->route('books.index');
         } else {
             return back()
-                        ->withErrors(['msg' => 'Ошибка сохранения'])
-                        ->withInput();
+                ->withErrors(['msg' => 'Ошибка сохранения'])
+                ->withInput();
         }
     }
 
@@ -101,6 +105,7 @@ class BookController extends BaseController
         $item->timestamps = false;
         $result = $item->fill($data)->save();
         if ($result) {
+            alert(__('Удалено!'));
             return 'ok';
         }
     }

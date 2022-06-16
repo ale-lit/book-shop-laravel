@@ -48,7 +48,11 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        info('Новый пользователь', $request->only('name', 'email'));
+
         Auth::login($user);
+
+        alert(__('Регистрация прошла успешно!'));
 
         return redirect('/');
     }

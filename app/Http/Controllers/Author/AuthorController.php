@@ -32,6 +32,8 @@ class AuthorController extends BaseController
         $item->timestamps = false;
         $result = $item->fill($validatedData)->save();
         if($result) {
+            alert(__('Добавлено!'));
+
             $job = new AfterCreateAuthorJob($item);
             $this->dispatch($job);
 
@@ -74,6 +76,8 @@ class AuthorController extends BaseController
         $validatedData = $request->all();
         $result = $item->fill($validatedData)->save();
         if($result) {
+            alert(__('Сохранено!'));
+
             return redirect()
                         ->route('authors.index');
         } else {
@@ -92,6 +96,7 @@ class AuthorController extends BaseController
         $item->timestamps = false;
         $result = $item->fill($data)->save();
         if ($result) {
+            alert(__('Удалено!'));
             return 'ok';
         }
     }

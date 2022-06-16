@@ -70,3 +70,7 @@
         </div>
     </div>
 </nav>
+
+
+<!-- Session Alert -->
+<x-alert class="mb-4" />

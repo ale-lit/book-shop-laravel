@@ -1,4 +1,7 @@
 @component('layouts.basic')
+    <!-- Validation Errors -->
+    <x-validation-errors class="mb-4" :errors="$errors" />
+
     <form method="POST"
         action="{{ empty($data->author_id) ? route('authors.store') : route('authors.update', $data->author_id) }}">
         @csrf

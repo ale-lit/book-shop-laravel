@@ -1,4 +1,7 @@
 @component('layouts.basic')
+    <!-- Validation Errors -->
+    <x-validation-errors class="mb-4" :errors="$errors" />
+
     <style>
         .edit-form {
             text-align: left;
